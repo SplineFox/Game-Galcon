@@ -9,9 +9,9 @@ public class ShipFactory : IShipFactory
     }
 
     private Settings _settings;
-    private PrefabProvider _prefabProvider;
+    private IPrefabProvider _prefabProvider;
 
-    public ShipFactory(Settings settings, PrefabProvider prefabProvider)
+    public ShipFactory(Settings settings, IPrefabProvider prefabProvider)
     {
         _settings = settings;
         _prefabProvider = prefabProvider;

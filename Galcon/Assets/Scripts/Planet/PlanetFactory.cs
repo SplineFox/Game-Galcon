@@ -14,9 +14,9 @@ public class PlanetFactory : IPlanetFactory
     }
 
     private Settings _settings;
-    private PrefabProvider _prefabProvider;
+    private IPrefabProvider _prefabProvider;
 
-    public PlanetFactory(Settings settings, PrefabProvider prefabProvider)
+    public PlanetFactory(Settings settings, IPrefabProvider prefabProvider)
     {
         _settings = settings;
         _prefabProvider = prefabProvider;
