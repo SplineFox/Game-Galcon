@@ -56,7 +56,7 @@ public class Planet
         if (ShipsCount == shipsCount)
             return;
 
-        ShipsCount = shipsCount;
+        ShipsCount = Math.Max(0, shipsCount);
         ShipsCountChanged.Invoke();
     }
 
