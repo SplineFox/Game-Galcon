@@ -8,6 +8,7 @@ public class PlanetSpawner : IPlanetSpawner
     public class Settings
     {
         public int PlanetsToSpawn;
+        public float MinlOffset;
     }
 
     private readonly Settings _settings;
@@ -64,8 +65,9 @@ public class PlanetSpawner : IPlanetSpawner
         {
             var distance = Vector2.Distance(planet.Position, newPosition);
             var radiusSum = planet.Radius + newPlanet.Radius;
+            var minOffset = radiusSum + _settings.MinlOffset;
 
-            if (distance < radiusSum)
+            if (distance < minOffset)
                 return false;
         }
 
