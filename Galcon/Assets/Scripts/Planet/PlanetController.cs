@@ -29,7 +29,7 @@ public class PlanetController : MonoBehaviour
 
     private void Update()
     {
-        _model.Tick(Time.deltaTime);
+        _model?.Tick(Time.deltaTime);
     }
 
     private void OnShipsCountChanged()
