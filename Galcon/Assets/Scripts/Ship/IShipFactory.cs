@@ -1,4 +1,4 @@
 ﻿public interface IShipFactory
 {
-    public Ship Create(Planet target, Player player);
+    public Ship Create(Player owner, Planet target);
 }

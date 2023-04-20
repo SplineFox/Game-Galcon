@@ -17,9 +17,9 @@ public class ShipFactory : IShipFactory
         _prefabProvider = prefabProvider;
     }
 
-    public Ship Create(Planet target, Player player)
+    public Ship Create(Player owner, Planet target)
     {
-        var ship = new Ship(_settings.ShipSpeed, target, player);
+        var ship = new Ship(_settings.ShipSpeed, owner, target);
         CreateController(ship);
 
         return ship;
