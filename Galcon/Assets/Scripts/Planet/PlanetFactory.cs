@@ -28,6 +28,8 @@ public class PlanetFactory : IPlanetFactory
         var shipAmount = RandomShipAmount();
 
         var model = new Planet(radius, shipAmount);
+        CreateController(model);
+
         return model;
     }
 
@@ -36,6 +38,8 @@ public class PlanetFactory : IPlanetFactory
         var radius = RandomRadius();
 
         var model = new Planet(radius, shipsAmount, player);
+        CreateController(model);
+
         return model;
     }
 
