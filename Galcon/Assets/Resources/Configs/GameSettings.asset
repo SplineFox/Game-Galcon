@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   LevelAreaSettings:
-    OffsetFromEdges: 0
+    OffsetFromEdges: 2
   PlanetFactorySettings:
     PlanetSprites: []
-    minRadius: 0
-    maxRadius: 0
-    minAmount: 0
-    maxAmount: 0
+    minRadius: 0.5
+    maxRadius: 0.8
+    minAmount: 10
+    maxAmount: 20
   PlanetSpawnerSettings:
-    PlanetsToSpawn: 0
-    MinlOffset: 0
+    PlanetsToSpawn: 8
+    MinOffset: 0.5
   ShipFactorySettings:
-    ShipSpeed: 0
+    ShipSpeed: 2
   ShipSpawnerSettings:
-    Offset: 0
-    ShipsPercentage: 0
+    Offset: 0.2
+    ShipsPercentage: 0.5
