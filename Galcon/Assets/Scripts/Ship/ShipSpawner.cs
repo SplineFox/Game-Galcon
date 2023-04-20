@@ -21,6 +21,8 @@ public class ShipSpawner : IShipSpawner
     {
         _settings = settings;
         _factory = factory;
+
+        _ships = new List<Ship>();
     }
 
     public void GenerateSquadron(Planet fromPlanet, Planet toPlanet)
