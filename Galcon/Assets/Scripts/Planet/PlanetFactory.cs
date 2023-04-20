@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlanetFactory
+public class PlanetFactory : IPlanetFactory
 {
     [Serializable]
     public class Settings
@@ -22,21 +22,40 @@ public class PlanetFactory
         _prefabProvider = prefabProvider;
     }
 
-    public Planet Create(int shipsAmount, Player player)
+    public Planet Create()
     {
-        var prefab = _prefabProvider.Load<Planet>(PrefabPath.Planet);
-        var planet = UnityEngine.Object.Instantiate(prefab);
+        var radius = RandomRadius();
+        var shipAmount = RandomShipAmount();
 
-        var model = CreateModel(shipsAmount, player);
-
-        planet.Construct(model);
-        return planet;
+        var model = new Planet(radius, shipAmount);
+        return model;
     }
 
-    private PlanetModel CreateModel(int shipsAmount, Player player)
+    public Planet Create(int shipsAmount, Player player)
+    {
+        var radius = RandomRadius();
+
+        var model = new Planet(radius, shipsAmount, player);
+        return model;
+    }
+
+    public void CreateController(Planet model)
+    {
+        var prefab = _prefabProvider.Load<PlanetController>(PrefabPath.Planet);
+        var planet = UnityEngine.Object.Instantiate(prefab);
+        
+        planet.OnCreate(model);
+    }
+
+    private float RandomRadius()
     {
         var radius = UnityEngine.Random.Range(_settings.minRadius, _settings.maxRadius);
-        var model = new PlanetModel(radius, shipsAmount, player);
-        return model;
+        return radius;
+    }
+
+    private int RandomShipAmount()
+    {
+        var amount = UnityEngine.Random.Range(_settings.minAmount, _settings.maxAmount);
+        return amount;
     }
 }
