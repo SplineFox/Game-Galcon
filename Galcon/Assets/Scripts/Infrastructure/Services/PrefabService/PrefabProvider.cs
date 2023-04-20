@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PrefabProvider
+public class PrefabProvider : IPrefabProvider
 {
     public TPrefab Load<TPrefab>(string prefabPath) where TPrefab : Object
     {
