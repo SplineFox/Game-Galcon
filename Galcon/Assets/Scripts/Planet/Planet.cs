@@ -35,6 +35,11 @@ public class Planet
         }
     }
 
+    public void TakeShips(int shipsAmount)
+    {
+        SetShipCount(ShipsCount - shipsAmount);
+    }
+
     public void SetPosition(Vector2 position)
     {
         Position = position;
