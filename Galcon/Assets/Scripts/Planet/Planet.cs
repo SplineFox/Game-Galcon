@@ -1,66 +1,62 @@
+﻿using System;
 using UnityEngine;
 
-public class Planet : MonoBehaviour
+public class Planet
 {
-    [SerializeField]
-    private PlanetView _view;
-    private PlanetModel _model;
+    public Vector2 Position { get; private set; }
+    public float Radius { get; }
+    public int ShipsCount { get; private set; }
+    public Player Owner { get; }
 
-    private float _timeTillCreation;
 
-    public void Construct(PlanetModel model)
+    private float _timeTillProduce;
+
+
+    public event Action ShipsCountChanged = delegate { };
+    public event Action PositionChanged = delegate { };
+    public event Action DeleteRequested = delegate { };
+
+
+    public Planet(float radius, int shipsCount, Player owner = null)
     {
-        _model = model;
+        Radius = radius;
+        ShipsCount = shipsCount;
+        Owner = owner;
     }
 
-    private void Start()
+    public void Tick(float deltaTime)
     {
-        _view.SetRadius(_model.Radius);
-        _view.SetColor(_model.Owner.Color);
+        if(Owner != null)
+        {
+            if (_timeTillProduce <= 0)
+                ProduceShips();
+
+            _timeTillProduce -= deltaTime;
+        }
     }
 
-    private void Update()
+    public void SetPosition(Vector2 position)
     {
-        if (_model.Owner != null)
-            ProduceShips();
+        Position = position;
+        PositionChanged.Invoke();
+    }
+
+    public void Delete()
+    {
+        DeleteRequested.Invoke();
+    }
+
+    private void SetShipCount(int shipsCount)
+    {
+        if (ShipsCount == shipsCount)
+            return;
+
+        ShipsCount = shipsCount;
+        ShipsCountChanged.Invoke();
     }
 
     private void ProduceShips()
     {
-        if(_timeTillCreation <= 0)
-        {
-            _model.ShipsCount += 5;
-            _timeTillCreation = 1f;
-        }
-        _timeTillCreation -= Time.deltaTime;
-    }
-
-    public bool IsSelectableBy(Player player)
-    {
-        return _model.Owner == player;
-    }
-
-    public void Select()
-    {
-        _view.ShowSelection();
-    }
-
-    public void Deselect()
-    {
-        _view.HideSelection();
-    }
-
-    public void SetDirection(Planet planet)
-    {
-        Vector2 fromPosition = transform.position;
-        Vector2 toPosition = planet.transform.position;
-
-        _view.SetDirection(fromPosition, toPosition);
-        _view.ShowDirection();
-    }
-
-    public void ResetDirection()
-    {
-        _view.HideDirection();
+        SetShipCount(ShipsCount + 5);
     }
 }
