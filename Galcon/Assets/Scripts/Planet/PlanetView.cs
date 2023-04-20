@@ -12,6 +12,10 @@ public class PlanetView : MonoBehaviour
 
     private void Start()
     {
+        _selectionRenderer.color = _outlineColor;
+        _lineRenderer.startColor = _outlineColor;
+        _lineRenderer.endColor = _outlineColor;
+
         HideSelection();
         HideDirection();
     }
@@ -50,12 +54,8 @@ public class PlanetView : MonoBehaviour
     public void SetDirection(Vector2 fromPosition, Vector2 toPosition)
     {
         _lineRenderer.positionCount = 2;
-
         _lineRenderer.SetPosition(0, fromPosition);
         _lineRenderer.SetPosition(1, toPosition);
-
-        _lineRenderer.startColor = _outlineColor;
-        _lineRenderer.endColor = _outlineColor;
     }
 
     public void HideDirection()
