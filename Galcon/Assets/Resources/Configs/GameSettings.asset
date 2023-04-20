@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629e9b523d01a4946b9a9b3291d23b53, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  LevelAreaSettings:
+    OffsetFromEdges: 0
+  PlanetFactorySettings:
+    PlanetSprites: []
+    minRadius: 0
+    maxRadius: 0
+    minAmount: 0
+    maxAmount: 0
+  PlanetSpawnerSettings:
+    PlanetsToSpawn: 0
+    MinlOffset: 0
+  ShipFactorySettings:
+    ShipSpeed: 0
+  ShipSpawnerSettings:
+    Offset: 0
+    ShipsPercentage: 0
