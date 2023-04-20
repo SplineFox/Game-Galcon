@@ -26,15 +26,18 @@ public class PlanetSpawner : IPlanetSpawner
 
     public void Generate()
     {
+        for (int planetIndex = 0; planetIndex < _settings.PlanetsToSpawn; planetIndex++)
+        {
+            SpawnPlanet();
+        }
     }
 
-    private void Spawn()
+    private void SpawnPlanet()
     {
         var planet = _factory.Create();
         var position = FindPositionForPlanet(planet);
 
         planet.SetPosition(position);
-
         _planets.Add(planet);
     }
 
