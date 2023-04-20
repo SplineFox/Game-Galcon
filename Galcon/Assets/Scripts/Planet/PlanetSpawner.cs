@@ -22,6 +22,8 @@ public class PlanetSpawner : IPlanetSpawner
         _settings = settings;
         _area = area;
         _factory = factory;
+
+        _planets = new List<Planet>();
     }
 
     public void Generate()
