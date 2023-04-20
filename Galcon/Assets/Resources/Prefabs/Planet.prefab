@@ -334,7 +334,7 @@ MonoBehaviour:
   _counterText: {fileID: 4197798905848412480}
   _spriteRenderer: {fileID: 4197798906942814906}
   _selectionRenderer: {fileID: 4197798905304247024}
-  _lineRenderer: {fileID: 0}
+  _lineRenderer: {fileID: 4197798906698228948}
 --- !u!1 &4197798906698228946
 GameObject:
   m_ObjectHideFlags: 0
