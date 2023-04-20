@@ -17,6 +17,7 @@ public class PlanetController : MonoBehaviour
 
         _view.SetPosition(_model.Position);
         _view.SetRadius(_model.Radius);
+        _view.SetCounter(_model.ShipsCount.ToString());
         _view.SetColor(_model.Owner != null ? _model.Owner.Color : Color.gray);
     }
 
