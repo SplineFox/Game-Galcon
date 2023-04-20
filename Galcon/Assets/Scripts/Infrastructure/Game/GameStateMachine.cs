@@ -12,6 +12,8 @@ public class GameStateMachine
         _states = new Dictionary<Type, IGameState>
         {
             [typeof(BootstrapState)] = new BootstrapState(this, diContainer, gameSettings),
+            [typeof(PrepareLevelState)] = new PrepareLevelState(this, diContainer.Resolve<IPlanetSpawner>()),
+            [typeof(GameLoopState)] = new GameLoopState(this),
         };
     }
 
