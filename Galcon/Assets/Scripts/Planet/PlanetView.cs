@@ -20,10 +20,15 @@ public class PlanetView : MonoBehaviour
         HideDirection();
     }
 
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+    }
+
     public void SetRadius(float radius)
     {
         var diameter = radius * 2;
-        transform.localScale = Vector3.one * diameter;
+        transform.localScale = Vector2.one * diameter;
     }
 
     public void SetCounter(string text)
