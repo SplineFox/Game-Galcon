@@ -31,7 +31,7 @@ public class ShipController : MonoBehaviour
         if(TryGetComponent<PlanetController>(out var planet))
         {
             if (_model.Target == planet.Model)
-                _model.OnTargetReached(planet.Model);
+                _model.OnTargetReached();
         }
     }
 
