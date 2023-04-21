@@ -1,11 +1,13 @@
 ﻿using System;
+using UnityEngine;
 
 public class ShipFactory : IShipFactory
 {
     [Serializable]
     public class Settings
     {
-        public int ShipSpeed;
+        [Range(0.2f, 2f)]
+        public float ShipSpeed;
     }
 
     private Settings _settings;
@@ -17,9 +19,9 @@ public class ShipFactory : IShipFactory
         _prefabProvider = prefabProvider;
     }
 
-    public Ship Create(Player owner, Planet target)
+    public Ship Create(Vector2 position, Player owner, Planet target)
     {
-        var ship = new Ship(_settings.ShipSpeed, owner, target);
+        var ship = new Ship(position, _settings.ShipSpeed, owner, target);
         CreateController(ship);
 
         return ship;

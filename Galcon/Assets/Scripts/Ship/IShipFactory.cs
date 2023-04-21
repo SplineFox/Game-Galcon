@@ -1,4 +1,6 @@
-﻿public interface IShipFactory
+﻿using UnityEngine;
+
+public interface IShipFactory
 {
-    public Ship Create(Player owner, Planet target);
+    public Ship Create(Vector2 position, Player owner, Planet target);
 }
