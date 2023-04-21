@@ -4,6 +4,7 @@
 public class GameSettings : ScriptableObject
 {
     [Header("Game-related settings")]
+    public PlayersRegistry.Settings PlayersRegistrySettings;
     public LevelArea.Settings LevelAreaSettings;
     
     [Space]
