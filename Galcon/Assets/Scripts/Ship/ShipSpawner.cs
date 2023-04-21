@@ -28,7 +28,7 @@ public class ShipSpawner : IShipSpawner
     public void GenerateSquadron(Planet fromPlanet, Planet toPlanet)
     {
         int shipsToSpawn = (int)(fromPlanet.ShipsCount * _settings.ShipsPercentage);
-        fromPlanet.TakeShips(shipsToSpawn);
+        fromPlanet.RemoveShips(shipsToSpawn);
 
         for (int shipIndex = 0; shipIndex < shipsToSpawn; shipIndex++)
         {
