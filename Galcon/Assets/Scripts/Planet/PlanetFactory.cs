@@ -6,11 +6,10 @@ public class PlanetFactory : IPlanetFactory
     [Serializable]
     public class Settings
     {
-        public Sprite[] PlanetSprites;
-        public float minRadius;
-        public float maxRadius;
-        public int minAmount;
-        public int maxAmount;
+        public float MinPlanetRadius;
+        public float MaxPlanetRadius;
+        public int MinShipsAmount;
+        public int MaxShipsAmount;
     }
 
     private Settings _settings;
@@ -53,13 +52,13 @@ public class PlanetFactory : IPlanetFactory
 
     private float RandomRadius()
     {
-        var radius = UnityEngine.Random.Range(_settings.minRadius, _settings.maxRadius);
+        var radius = UnityEngine.Random.Range(_settings.MinPlanetRadius, _settings.MaxPlanetRadius);
         return radius;
     }
 
     private int RandomShipAmount()
     {
-        var amount = UnityEngine.Random.Range(_settings.minAmount, _settings.maxAmount);
+        var amount = UnityEngine.Random.Range(_settings.MinShipsAmount, _settings.MaxShipsAmount);
         return amount;
     }
 }
