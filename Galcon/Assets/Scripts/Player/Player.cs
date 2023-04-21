@@ -11,6 +11,7 @@ public class Player
 
     public Player(Color color)
     {
+        _color = color;
         _planets = new List<Planet>();
     }
 
