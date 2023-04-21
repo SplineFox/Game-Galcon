@@ -7,6 +7,8 @@ public class ShipController : MonoBehaviour
 
     private Ship _model;
 
+    public Ship Model => _model;
+
     public void OnCreate(Ship model)
     {
         _model = model;
@@ -22,6 +24,15 @@ public class ShipController : MonoBehaviour
     {
         if (_model != null)
             UpdatePosition();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(TryGetComponent<PlanetController>(out var planet))
+        {
+            if (_model.Target == planet.Model)
+                _model.OnTargetReached(planet.Model);
+        }
     }
 
     private void UpdatePosition()

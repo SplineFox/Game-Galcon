@@ -24,6 +24,12 @@ public class Ship
         Position = position;
     }
 
+    public void OnTargetReached()
+    {
+        Target.HandleShip(this);
+        Delete();
+    }
+
     public void Delete()
     {
         DeleteRequested.Invoke();
