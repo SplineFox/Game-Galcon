@@ -7,9 +7,12 @@ public class ShipSpawner : IShipSpawner
     [Serializable]
     public class Settings
     {
-        public float Offset;
         [Range(0.1f,1f)]
         public float ShipsPercentage;
+        [Tooltip("Radius offset used when arranging ships in spiral")]
+        public float SpiralRadiusOffset;
+        [Tooltip("Angle offset used when arranging ships in spiral")]
+        public float SpiralAngleOffset;
     }
 
     private readonly Settings _settings;
@@ -30,11 +33,19 @@ public class ShipSpawner : IShipSpawner
         int shipsToSpawn = (int)(fromPlanet.ShipsCount * _settings.ShipsPercentage);
         fromPlanet.RemoveShips(shipsToSpawn);
 
+        float angle = 0;
+        float radius = 0;
+        Vector2 position = fromPlanet.Position;
+
+        // Arrange in a spiral
         for (int shipIndex = 0; shipIndex < shipsToSpawn; shipIndex++)
         {
-            float offset = shipIndex * _settings.Offset;
+            var x = radius * Mathf.Cos(angle);
+            var y = radius * Mathf.Sin(angle);
+            position += new Vector2(x,y);
 
-            Vector2 position = fromPlanet.Position + (Vector2.one * offset);
+            radius += _settings.SpiralRadiusOffset;
+            angle += _settings.SpiralAngleOffset;
 
             SpawnShip(position, fromPlanet.Owner, toPlanet);
         }
@@ -42,9 +53,7 @@ public class ShipSpawner : IShipSpawner
 
     private void SpawnShip(Vector2 position, Player owner, Planet target)
     {
-        var ship = _factory.Create(owner, target);
-        ship.SetPosition(position);
-
+        var ship = _factory.Create(position, owner, target);
         _ships.Add(ship);
     }
 }
