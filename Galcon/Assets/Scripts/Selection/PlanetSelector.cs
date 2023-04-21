@@ -85,9 +85,9 @@ public class PlanetSelector : IDisposable
         var planets = new List<Planet>();
         foreach (var collider in colliders)
         {
-            if (collider.TryGetComponent<Planet>(out var planet))
+            if (collider.TryGetComponent<PlanetController>(out var planet))
             {
-                    planets.Add(planet);
+                    planets.Add(planet.Model);
             }
         }
         return planets;
