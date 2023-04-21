@@ -12,19 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629e9b523d01a4946b9a9b3291d23b53, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
+  PlayersRegistrySettings:
+    MainPlayerColor: {r: 0, g: 0.83333325, b: 1, a: 1}
   LevelAreaSettings:
     OffsetFromEdges: 2
   PlanetFactorySettings:
-    PlanetSprites: []
-    minRadius: 0.5
-    maxRadius: 0.8
-    minAmount: 10
-    maxAmount: 20
+    MinPlanetRadius: 0.5
+    MaxPlanetRadius: 0.8
+    MinShipsAmount: 5
+    MaxShipsAmount: 15
   PlanetSpawnerSettings:
-    PlanetsToSpawn: 8
+    PlanetsToSpawn: 10
     MinOffset: 0.5
   ShipFactorySettings:
-    ShipSpeed: 2
+    ShipSpeed: 1
   ShipSpawnerSettings:
-    Offset: 0.2
     ShipsPercentage: 0.5
+    SpiralRadiusOffset: 0.005
+    SpiralAngleOffset: 0.5
