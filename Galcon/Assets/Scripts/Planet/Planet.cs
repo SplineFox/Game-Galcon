@@ -33,7 +33,10 @@ public class Planet
         if(Owner != null)
         {
             if (_timeTillProduce <= 0)
+            {
                 ProduceShips();
+                _timeTillProduce = 1f;
+            }
 
             _timeTillProduce -= deltaTime;
         }
