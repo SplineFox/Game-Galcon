@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4197798906335766914}
   - component: {fileID: 4197798906335766913}
+  - component: {fileID: 6082852404892513725}
   - component: {fileID: 4197798906335766912}
   - component: {fileID: 4197798906335766927}
   m_Layer: 0
@@ -304,7 +305,28 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.5
+--- !u!50 &6082852404892513725
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4197798906335766926}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &4197798906335766912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,11 +352,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0511fe2718301f46a21431da21b36f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  _outlineColor: {r: 0.85, g: 0.95, b: 1, a: 1}
+  _sprites:
+  - {fileID: 21300000, guid: 72f1f909127ec8441a3381f575ac9f04, type: 3}
+  - {fileID: 21300000, guid: 1a521a97c7e111642b2fca20b121d0d0, type: 3}
+  - {fileID: 21300000, guid: 00f9313b24b642948832490340560191, type: 3}
+  - {fileID: 21300000, guid: 574f61b1b72ac994cb5cdde3107039b6, type: 3}
+  - {fileID: 21300000, guid: 8ce946b9c11bbba44895763b6e9b3505, type: 3}
+  - {fileID: 21300000, guid: f472da8eecadb814aba74903a33c6302, type: 3}
   _counterText: {fileID: 4197798905848412480}
   _spriteRenderer: {fileID: 4197798906942814906}
   _selectionRenderer: {fileID: 4197798905304247024}
-  _lineRenderer: {fileID: 4197798906698228948}
 --- !u!1 &4197798906698228946
 GameObject:
   m_ObjectHideFlags: 0
