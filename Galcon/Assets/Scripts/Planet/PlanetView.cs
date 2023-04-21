@@ -16,7 +16,6 @@ public class PlanetView : MonoBehaviour
         _lineRenderer.startColor = _outlineColor;
         _lineRenderer.endColor = _outlineColor;
 
-        HideSelection();
         HideDirection();
     }
 
