@@ -14,14 +14,16 @@ public class PlanetSpawner : IPlanetSpawner
     private readonly Settings _settings;
     private readonly ILevelArea _area;
     private readonly IPlanetFactory _factory;
+    private readonly IPlayersRegistry _playersRegistry;
 
     private List<Planet> _planets;
 
-    public PlanetSpawner(Settings settings, ILevelArea area, IPlanetFactory factory)
+    public PlanetSpawner(Settings settings, ILevelArea area, IPlanetFactory factory, IPlayersRegistry playersRegistry)
     {
         _settings = settings;
         _area = area;
         _factory = factory;
+        _playersRegistry = playersRegistry;
 
         _planets = new List<Planet>();
     }
@@ -32,6 +34,7 @@ public class PlanetSpawner : IPlanetSpawner
         {
             SpawnPlanet();
         }
+        AssignPlayers();
     }
 
     private void SpawnPlanet()
@@ -41,6 +44,14 @@ public class PlanetSpawner : IPlanetSpawner
 
         planet.SetPosition(position);
         _planets.Add(planet);
+    }
+
+    private void AssignPlayers()
+    {
+        var planetIndex = UnityEngine.Random.Range(0, _planets.Count);
+        var planet = _planets[planetIndex];
+        planet.SetOwner(_playersRegistry.MainPlayer);
+        planet.SetShipCount(50);
     }
 
     private Vector2 FindPositionForPlanet(Planet planet)
