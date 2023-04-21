@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Ship
 {
+    public Vector2 PreviousPosition { get; private set; }
     public Vector2 Position { get; private set; }
     public float Speed { get; }
     public Player Owner { get; }
@@ -12,8 +13,10 @@ public class Ship
     public event Action DeleteRequested = delegate { };
 
 
-    public Ship(float speed, Player owner, Planet target)
+    public Ship(Vector2 position, float speed, Player owner, Planet target)
     {
+        PreviousPosition = position;
+        Position = position;
         Speed = speed;
         Target = target;
         Owner = owner;
@@ -21,6 +24,7 @@ public class Ship
 
     public void SetPosition(Vector2 position)
     {
+        PreviousPosition = Position;
         Position = position;
     }
 
