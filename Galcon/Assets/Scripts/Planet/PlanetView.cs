@@ -41,14 +41,9 @@ public class PlanetView : MonoBehaviour
         _spriteRenderer.color = color;
     }
 
-    public void ShowSelection()
+    public void SetSelection(bool isSelected)
     {
-        _selectionRenderer.enabled = true;
-    }
-
-    public void HideSelection()
-    {
-        _selectionRenderer.enabled = true;
+        _selectionRenderer.enabled = isSelected;
     }
 
     public void ShowDirection()

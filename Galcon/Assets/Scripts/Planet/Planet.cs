@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Planet
 {
-    public Vector2 Position { get; private set; }
-    public float Radius { get; }
-    public int ShipsCount { get; private set; }
-    public Player Owner { get; private set; }
-
-
     private float _timeTillProduce;
 
+    public float Radius { get; }
+    public Vector2 Position { get; private set; }
+    public int ShipsCount { get; private set; }
+    public bool IsSelected { get; private set; }
+    public Player Owner { get; private set; }
 
     public event Action ShipsCountChanged = delegate { };
+    public event Action SelectionChanged = delegate { };
     public event Action PositionChanged = delegate { };
     public event Action OwnerChanged = delegate { };
     public event Action DeleteRequested = delegate { };
@@ -23,6 +23,9 @@ public class Planet
         Radius = radius;
         ShipsCount = shipsCount;
         Owner = owner;
+        IsSelected = false;
+
+        owner?.AddPlanet(this);
     }
 
     public void Tick(float deltaTime)
@@ -75,12 +78,24 @@ public class Planet
         if (Owner == owner)
             return;
 
+        Owner?.RemovePlanet(this);
         Owner = owner;
+        Owner.AddPlanet(this);
+
         OwnerChanged.Invoke();
+    }
+
+    public void SetSelection(bool isSelected)
+    {
+        if (IsSelected == isSelected)
+            return;
+
+        IsSelected = IsSelected;
     }
 
     public void Delete()
     {
+        Owner?.RemovePlanet(this);
         DeleteRequested.Invoke();
     }
 

@@ -14,12 +14,14 @@ public class PlanetController : MonoBehaviour
         _model = model;
 
         _model.ShipsCountChanged += OnShipsCountChanged;
+        _model.SelectionChanged += OnSelectionChanged;
         _model.PositionChanged += OnPositionChanged;
         _model.OwnerChanged += OnOwnerChanged;
         _model.DeleteRequested += OnDeleteRequested;
 
         _view.SetPosition(_model.Position);
         _view.SetRadius(_model.Radius);
+        _view.SetSelection(_model.IsSelected);
         _view.SetCounter(_model.ShipsCount.ToString());
         _view.SetColor(_model.Owner != null ? _model.Owner.Color : Color.gray);
     }
@@ -27,6 +29,7 @@ public class PlanetController : MonoBehaviour
     private void OnDestroy()
     {
         _model.ShipsCountChanged -= OnShipsCountChanged;
+        _model.SelectionChanged -= OnSelectionChanged;
         _model.PositionChanged -= OnPositionChanged;
         _model.OwnerChanged -= OnOwnerChanged;
         _model.DeleteRequested -= OnDeleteRequested;
@@ -45,6 +48,11 @@ public class PlanetController : MonoBehaviour
     private void OnPositionChanged()
     {
         _view.SetPosition(_model.Position);
+    }
+
+    private void OnSelectionChanged()
+    {
+        _view.SetSelection(_model.IsSelected);
     }
 
     private void OnOwnerChanged()
