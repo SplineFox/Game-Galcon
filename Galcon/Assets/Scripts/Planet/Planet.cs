@@ -93,7 +93,8 @@ public class Planet
         if (IsSelected == isSelected)
             return;
 
-        IsSelected = IsSelected;
+        IsSelected = isSelected;
+        SelectionChanged.Invoke();
     }
 
     public void Delete()
