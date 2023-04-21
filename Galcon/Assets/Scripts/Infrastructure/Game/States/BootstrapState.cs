@@ -14,8 +14,10 @@ public class BootstrapState : IGameState
         _gameSettings = gameSettings;
 
         RegisterBaseServices();
+        RegisterLevelServices();
         RegisterFactories();
         RegisterSpawners();
+        RegisterGameServices();
     }
 
     public void Enter()
@@ -30,10 +32,16 @@ public class BootstrapState : IGameState
     private void RegisterBaseServices()
     {
         _diContainer.Register<IPrefabProvider>(new PrefabProvider());
-        
+    }
+
+    private void RegisterLevelServices()
+    {
         _diContainer.Register<ILevelArea>(new LevelArea(
             _gameSettings.LevelAreaSettings,
             Camera.main));
+
+        _diContainer.Register<IPlayersRegistry>(new PlayersRegistry(
+            _gameSettings.PlayersRegistrySettings));
     }
 
     private void RegisterFactories()
@@ -52,10 +60,23 @@ public class BootstrapState : IGameState
         _diContainer.Register<IPlanetSpawner>(new PlanetSpawner(
             _gameSettings.PlanetSpawnerSettings,
             _diContainer.Resolve<ILevelArea>(),
-            _diContainer.Resolve<IPlanetFactory>()));
+            _diContainer.Resolve<IPlanetFactory>(),
+            _diContainer.Resolve<IPlayersRegistry>()));
 
         _diContainer.Register<IShipSpawner>(new ShipSpawner(
             _gameSettings.ShipSpawnerSettings,
             _diContainer.Resolve<IShipFactory>()));
+    }
+
+    private void RegisterGameServices()
+    {
+        _diContainer.Register<ITargetManager>(new TargetManager(
+            _diContainer.Resolve<IPlayersRegistry>(),
+            _diContainer.Resolve<IShipSpawner>()));
+
+        _diContainer.Register<IGameFactory>(new GameFactory(
+            _diContainer.Resolve<IGameInput>(),
+            _diContainer.Resolve<IPrefabProvider>(),
+            _diContainer.Resolve<ITargetManager>()));
     }
 }
