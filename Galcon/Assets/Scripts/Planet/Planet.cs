@@ -70,6 +70,15 @@ public class Planet
         SetShipCount(ShipsCount - shipsAmount);
     }
 
+    public void SetShipCount(int shipsCount)
+    {
+        if (ShipsCount == shipsCount)
+            return;
+
+        ShipsCount = Math.Max(0, shipsCount);
+        ShipsCountChanged.Invoke();
+    }
+
     public void SetPosition(Vector2 position)
     {
         Position = position;
@@ -101,15 +110,6 @@ public class Planet
     {
         Owner?.RemovePlanet(this);
         DeleteRequested.Invoke();
-    }
-
-    private void SetShipCount(int shipsCount)
-    {
-        if (ShipsCount == shipsCount)
-            return;
-
-        ShipsCount = Math.Max(0, shipsCount);
-        ShipsCountChanged.Invoke();
     }
 
     private void ProduceShips()
